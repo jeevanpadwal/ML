@@ -1,0 +1,4 @@
+Model: Linear Regression
+R²: 0.9671
+MAE: 91.11
+RMSE: 205.56

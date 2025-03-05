@@ -26,10 +26,15 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout, GRU, Bidirectional
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
+import pandas as pd
+
+# Function to read and prepare data
+import pandas as pd
+
 # Function to read and prepare data
 def load_and_prepare_data(file_path):
     """Load and prepare the agricultural dataset"""
-    # Read the data
+    
     print("Loading dataset...")
     try:
         # Try normal load first
@@ -40,27 +45,44 @@ def load_and_prepare_data(file_path):
         for chunk in pd.read_csv(file_path, chunksize=10000):
             chunk_list.append(chunk)
         df = pd.concat(chunk_list)
-    
+
     # Convert date column to datetime
     df['Arrival_Date'] = pd.to_datetime(df['Arrival_Date'], dayfirst=True)
-    
+
     # Sort by date
     df = df.sort_values('Arrival_Date')
-    
+
     # Check and handle missing values
     print(f"Missing values before cleaning: {df.isnull().sum().sum()}")
     df = df.fillna(method='ffill')  # Forward fill for time series data
     df = df.dropna()  # Drop any remaining rows with NaN
     print(f"Missing values after cleaning: {df.isnull().sum().sum()}")
-    
+
     # Create additional time features
     df['Year'] = df['Arrival_Date'].dt.year
     df['Month'] = df['Arrival_Date'].dt.month
     df['Day'] = df['Arrival_Date'].dt.day
     df['DayOfWeek'] = df['Arrival_Date'].dt.dayofweek
     df['Quarter'] = df['Arrival_Date'].dt.quarter
-    
+
+    # Ensure only numeric columns are considered for filtering
+    numeric_df = df.select_dtypes(include=['number'])  # Select only numeric columns
+
+    # Drop rows where any numeric column has a value greater than 10,000
+    threshold = 10000
+    initial_rows = df.shape[0]
+    mask = (numeric_df > threshold).any(axis=1)  # Identify rows to drop
+    df = df[~mask]  # Keep rows where condition is False
+    final_rows = df.shape[0]
+    dropped_rows = initial_rows - final_rows
+
+    print(f"Rows before dropping high values: {initial_rows}")
+    print(f"Rows after dropping high values: {final_rows}")
+    print(f"Total rows dropped: {dropped_rows}")
+
     return df
+
+
 
 # Function to perform exploratory data analysis
 def perform_eda(df):

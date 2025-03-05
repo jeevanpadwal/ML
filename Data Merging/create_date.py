@@ -1,17 +1,21 @@
 import pandas as pd
-from datetime import datetime, timedelta
 
-# Load the dataset
-file_path = "your_dataset.csv"  # Change this to your actual file path
-df = pd.read_csv(file_path)
+# Load market price data
+market_file = "D:/programming/Python/ML/Data Merging/onion_pune_quanity_market_price.csv"  # Update with your file path
+market_df = pd.read_csv(market_file, parse_dates=["Reported Date"], dayfirst=True)
 
-# Function to calculate the actual date
-def doy_to_date(year, doy):
-    return (datetime(year, 1, 1) + timedelta(days=doy - 1)).strftime("%Y-%m-%d")
+# Load weather data
+weather_file = "D:/programming/Python/ML/Data Merging/updated_dataset.csv"  # Update with your file path
+weather_df = pd.read_csv(weather_file, parse_dates=["DATE"])
 
-# Add a new 'DATE' column
-df["DATE"] = df.apply(lambda row: doy_to_date(row["YEAR"], row["DOY"]), axis=1)
+# Merge on matching dates
+merged_df = market_df.merge(weather_df, left_on="Reported Date", right_on="DATE", how="left")
 
-# Save the updated dataset
-df.to_csv("updated_dataset.csv", index=False)
-print("Updated dataset saved with DATE column.")
+# Drop duplicate date column (optional)
+merged_df.drop(columns=["DATE"], inplace=True)
+
+# Save merged dataset
+merged_file = "merged_market_weather.csv"
+merged_df.to_csv(merged_file, index=False)
+
+print(f"Merged data saved to {merged_file}")

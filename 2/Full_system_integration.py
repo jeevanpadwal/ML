@@ -18,8 +18,8 @@ def main():
     print("Starting agricultural price prediction system...")
     
     # Step 1: Load and preprocess data
-    data_path = "agricultural_market_data.csv" 
-    weather_data_path = "weather_data.csv"
+    data_path = "D:/programming/Python/ML/2/Pune Market Price.csv" 
+    weather_data_path = "D:/programming/Python/ML/2/pune_with_date.csv"
     
     # Load data
     print("Loading and cleaning data...")

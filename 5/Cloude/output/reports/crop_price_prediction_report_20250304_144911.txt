@@ -1,0 +1,86 @@
+================================================================================
+CROP PRICE PREDICTION SYSTEM - ANALYSIS REPORT
+Generated on: 2025-03-04 14:49:11
+================================================================================
+
+--------------------------------------------------------------------------------
+1. DATA SUMMARY
+--------------------------------------------------------------------------------
+Dataset Shape: (24663, 19)
+Number of Records: 24663
+Date Range: 01-01-2004 to 31-12-2024
+Crops: Other, Red, Local, Nasik, Onion and 1 more
+States: Maharashtra
+Markets: Baramati, Dound, Indapur, Junnar, Junnar(Alephata) and 13 more
+
+Price Statistics:
+  Min Price: 0.00
+  Max Price: 40000.00
+  Average Price: 1342.13
+  Median Price: 1050.00
+
+--------------------------------------------------------------------------------
+2. MODEL EVALUATION
+--------------------------------------------------------------------------------
+Performance Metrics for Different Models:
+
+Model                R²         MAE        RMSE      
+--------------------------------------------------
+Linear Regression    0.9671     91.11      205.56    
+Random Forest        0.8476     28.94      442.19    
+Gradient Boosting    0.8471     67.00      442.98    
+XGBoost              0.8299     33.20      467.24    
+
+Best Model: Linear Regression with R² score of 0.9671
+
+--------------------------------------------------------------------------------
+3. PRICE PREDICTIONS
+--------------------------------------------------------------------------------
+Predicted prices for the next 30 days:
+
+Day        Date         Predicted Price
+----------------------------------------
+1          2025-03-02   556.28         
+2          2025-03-03   556.28         
+3          2025-03-04   556.28         
+4          2025-03-05   556.28         
+5          2025-03-06   556.28         
+6          2025-03-07   556.28         
+7          2025-03-08   556.28         
+8          2025-03-09   556.28         
+9          2025-03-10   556.28         
+10         2025-03-11   556.28         
+11         2025-03-12   556.28         
+12         2025-03-13   556.28         
+13         2025-03-14   556.28         
+14         2025-03-15   556.28         
+15         2025-03-16   556.28         
+16         2025-03-17   556.28         
+17         2025-03-18   556.28         
+18         2025-03-19   556.28         
+19         2025-03-20   556.28         
+20         2025-03-21   556.28         
+21         2025-03-22   556.28         
+22         2025-03-23   556.28         
+23         2025-03-24   556.28         
+24         2025-03-25   556.28         
+25         2025-03-26   556.28         
+26         2025-03-27   556.28         
+27         2025-03-28   556.28         
+28         2025-03-29   556.28         
+29         2025-03-30   556.28         
+30         2025-03-31   556.28         
+
+Prediction Summary:
+Average predicted price: 556.28
+Minimum predicted price: 556.28
+Maximum predicted price: 556.28
+Overall trend: downward
+
+--------------------------------------------------------------------------------
+4. RECOMMENDATIONS
+--------------------------------------------------------------------------------
+1. PRICE DECREASE ALERT: Prices are predicted to fall by approximately 84.1% in the next 30 days.
+2. IMMEDIATE ACTION: Consider selling your crop soon to avoid significant losses.
+3. MARKET DIVERSIFICATION: Explore alternative markets or value-added processing options that might offer better returns.
+4. SEASONAL FACTOR: Spring season often brings new crops to market. Be aware of increased competition and plan your selling strategy accordingly.

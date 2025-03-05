@@ -251,7 +251,7 @@ class CropPricePredictionSystem:
             # Initialize models
             models = {
                 'Linear Regression': LinearRegression(),
-                'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
+                'Random Forest': RandomForestRegressor(n_estimators=100, random_state=75),
                 'Gradient Boosting': GradientBoostingRegressor(random_state=42),
                 'XGBoost': XGBRegressor.XGBRegressor(objective='reg:squarederror', random_state=42)
             }
